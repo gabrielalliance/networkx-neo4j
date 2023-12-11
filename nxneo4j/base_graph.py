@@ -366,7 +366,7 @@ class BaseGraph:
         """
         with self.driver.session() as session:
             session.run("""\
-            CREATE CONSTRAINT ON (c:Character) ASSERT c.name IS UNIQUE;
+            CREATE CONSTRAINT FOR (c:Character) REQUIRE c.name IS UNIQUE;
             """)
 
             session.run("""\
@@ -412,7 +412,7 @@ class BaseGraph:
     def load_euroads(self):
         with self.driver.session() as session:
             session.run("""\
-            CREATE CONSTRAINT ON (p:Place) ASSERT p.name IS UNIQUE
+            CREATE CONSTRAINT FOR (p:Place) REQUIRE p.name IS UNIQUE
             """)
             session.run("""\
             USING PERIODIC COMMIT 1000
@@ -435,7 +435,7 @@ class BaseGraph:
     def load_twitter(self):
         with self.driver.session() as session:
             session.run("""\
-            CREATE CONSTRAINT ON(u:User) ASSERT u.id IS unique
+            CREATE CONSTRAINT FOR(u:User) REQUIRE u.id IS unique
             """)
 
             session.run("""\
